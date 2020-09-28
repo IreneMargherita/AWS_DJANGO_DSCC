@@ -1,0 +1,14 @@
+<html>
+<h1>EDIT FORM</h1>
+<form class="user" action='changeaddress' method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <input type="email"  name='email' class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+      </div>
+      <div class="form-group">
+        <input type="password" name='password' class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+      </div>
+    ADDRESS: <input type="text"  name="address" placeholder="Address"><br>
+    <input type="submit" value="SUBMIT"/>
+    </form >
+</html>>

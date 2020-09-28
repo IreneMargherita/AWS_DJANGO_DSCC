@@ -1,0 +1,29 @@
+{% load static %}
+<html>
+    <h1>USER PROFILE DESCRIPTION</h1>
+    
+   <h1>Name:
+    {% for i in name%}
+    {{i}}
+    {% endfor %}
+   </h1>
+   <h1>Email:
+    {% for i in email%}
+    {{i}}
+    {% endfor %}
+   </h1>
+   <h1>Username:
+    {% for i in username%}
+    {{i}}
+    {% endfor %}
+   </h1>
+   <h1>Address:
+    {% for i in address%}
+    {{i}}
+    {% endfor %}
+   </h1>
+   <form action='edit_details' method="POST">
+    {% csrf_token %}
+    <input type="submit" value="EDIT DETAILS"/>
+</form >
+</html>

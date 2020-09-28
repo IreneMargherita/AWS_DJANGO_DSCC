@@ -95,6 +95,38 @@ def validate_credentials(request):
             return render(request,'register.html')           
 
     return render(request,'register.html')
+def edit_details(request):
+    return render(request,'editdetails.html')
+def changeaddress(request):
+    if request.method=="POST":
+        email=request.POST['email']
+        password=request.POST['password']
+        address=request.POST['address']
+        if Details.objects.filter(email=email).filter(password=password).exists():
+            details=Details.objects.filter(email=email).filter(password=password).values()
+            details[0]['address']=address
+            name=[]
+            name.append(details[0]['name'])
+            #ADDITIONAL CODE
+            email=[]
+            email.append(details[0]['email'])
+            username=[]
+            username.append(details[0]['username'])
+            address=[]
+            address.append(details[0]['address'])
+            return render(request,'description.html',{'name':name,'email':email,'username':username,'address':address})
+            #TILL HERE
+            #rd.append(reg[0]['score'])
+            #rg=reg[0]['score']
+            #print(rd)
+        else:
+            return render(request,"editdetails.html")
+    else:
+        print('invalid user')
+        return render(request,"login.html")
+    
+    return render(request,'description.html',{'name':name,'email':email,'username':username,'address':address})
+                    
 def log_cred(request):
     if request.method=="POST":
         email=request.POST['email']
@@ -104,11 +136,19 @@ def log_cred(request):
             reg=Progress.objects.filter(email=email).values()
             #print(reg[0]['score'])
             #print('this the forign key')
-            rd=[]
-            rd.append(details[0]['name'])
-            rd.append(reg[0]['score'])
+            name=[]
+            name.append(details[0]['name'])
+            #ADDITIONAL CODE
+            email=[]
+            email.append(details[0]['email'])
+            username=[]
+            username.append(details[0]['username'])
+            address=[]
+            address.append(details[0]['address'])
+            #TILL HERE
+            #rd.append(reg[0]['score'])
             #rg=reg[0]['score']
-            print(rd)
+            #print(rd)
 
     else:
         print('invalid user')
@@ -117,6 +157,6 @@ def log_cred(request):
     images=Images.objects.all()
     
     
-    
+    return render(request,'description.html',{'name':name,'email':email,'username':username,'address':address})
     #return render(request,'index.html',{'images':images})    
-    return render(request,'index.html',{'rd':rd,'images':images})   
+    #return render(request,'description.html',{'rd':rd,'images':images})   
