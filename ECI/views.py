@@ -104,7 +104,10 @@ def changeaddress(request):
         address=request.POST['address']
         if Details.objects.filter(email=email).filter(password=password).exists():
             details=Details.objects.filter(email=email).filter(password=password).values()
-            details[0]['address']=address
+            details_obj=Details.objects.get(email=email)
+            details_obj.address=request.POST['address']
+            details_obj.save()
+            #details[0]['address']=address
             name=[]
             name.append(details[0]['name'])
             #ADDITIONAL CODE
